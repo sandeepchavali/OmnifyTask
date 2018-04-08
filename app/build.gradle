@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 26
@@ -16,6 +17,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
@@ -26,14 +28,21 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
+    //Firebase Libaeries
     implementation 'com.google.firebase:firebase-core:12.0.0'
     implementation 'com.google.firebase:firebase-firestore:12.0.0'
     implementation 'com.google.firebase:firebase-auth:12.0.0'
     implementation 'com.google.android.gms:play-services-auth:12.0.0'
-//    compile 'com.firebaseui:firebase-ui:2.0.1'
+
     // Support  Libary
     implementation 'com.android.support:cardview-v7:26.1.0'
     implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+
+    // Retrofit Libary
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
+    implementation 'com.google.code.gson:gson:2.8.0'
 
 }
 apply plugin: 'com.google.gms.google-services'
