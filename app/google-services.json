@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1012506288646",
+    "firebase_url": "https://omnifytask.firebaseio.com",
+    "project_id": "omnifytask",
+    "storage_bucket": "omnifytask.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1012506288646:android:b3e78c98f510ae04",
+        "android_client_info": {
+          "package_name": "com.OmnifyTask"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1012506288646-lqgh86a437mbmvru5hn5d9k08us79fcd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQJzHchIIueri5CGLs80sU6kCiSk03ImU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
