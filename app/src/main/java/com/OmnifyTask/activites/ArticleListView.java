@@ -2,6 +2,7 @@ package com.OmnifyTask.activites;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -62,7 +63,6 @@ public class ArticleListView extends AppCompatActivity {
         myRealm = Realm.getDefaultInstance();
 
         article_Recycler = findViewById(R.id.article_Recycler);
-
 
         final RealmResults<TopStoryList> results = myRealm.where(TopStoryList.class).findAll();
         RealmResults<StoryDetails> storyResult = myRealm.where(StoryDetails.class).findAll();
@@ -130,6 +130,7 @@ public class ArticleListView extends AppCompatActivity {
 
     public void ArticleDetials(String id) {
 
+        // calling the api to load the data from the ids from the topstoreis and calling single id and storing the in the database
 //        showProgressBar();
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
@@ -205,6 +206,7 @@ public class ArticleListView extends AppCompatActivity {
 
     public void clearDB() {
 
+        // to clear the database command
         myRealm = Realm.getDefaultInstance();
         myRealm.beginTransaction();
         myRealm.delete(TopStoryList.class);
@@ -239,6 +241,18 @@ public class ArticleListView extends AppCompatActivity {
         article_Recycler.setItemAnimator(new DefaultItemAnimator());
         article_Recycler.setAdapter(madpter);
 
+        madpter.SetOnItemClickListener(new StoryListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, String articleId) {
+                Log.e("sadsads", String.valueOf(articleId));
+
+                Intent articledetail = new Intent(ArticleListView.this, ArticleDetailView.class);
+                articledetail.putExtra("articleId", articleId);
+                startActivity(articledetail);
+            }
+
+
+        });
 
     }
 

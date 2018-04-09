@@ -2,6 +2,7 @@ package com.OmnifyTask.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,11 +24,16 @@ public class StoryListAdapter extends RecyclerView.Adapter<StoryListAdapter.View
 
     Context context;
     RealmList<StoryDetails> mdata;
+    private OnItemClickListener mOnItemClickListener;
 
 
     public StoryListAdapter(Context context, RealmList<StoryDetails> mdata) {
         this.context = context;
         this.mdata = mdata;
+    }
+
+    public void SetOnItemClickListener(final OnItemClickListener mItemClickListener) {
+        this.mOnItemClickListener = mItemClickListener;
     }
 
     @Override
@@ -64,12 +70,19 @@ public class StoryListAdapter extends RecyclerView.Adapter<StoryListAdapter.View
         return mdata.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public interface OnItemClickListener {
+        public void onItemClick(View view, String articleId);
+    }
+
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView votes, title, url, time, author, comments;
 
         public ViewHolder(View itemView) {
             super(itemView);
+
+            itemView.setOnClickListener(this);
 
             votes = itemView.findViewById(R.id.votes);
             time = itemView.findViewById(R.id.time);
@@ -77,6 +90,15 @@ public class StoryListAdapter extends RecyclerView.Adapter<StoryListAdapter.View
             url = itemView.findViewById(R.id.url);
             author = itemView.findViewById(R.id.author);
             comments = itemView.findViewById(R.id.comments);
+
+        }
+
+        @Override
+        public void onClick(View view) {
+            Log.e("View", String.valueOf(view) + getAdapterPosition());
+            if (mOnItemClickListener != null) {
+                mOnItemClickListener.onItemClick(view, String.valueOf(mdata.get(getAdapterPosition()).getId()));
+            }
         }
     }
 
